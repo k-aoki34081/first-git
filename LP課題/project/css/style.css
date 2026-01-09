@@ -1,0 +1,21 @@
+/* ここから下に記載していく */
+.container {
+  position: relative;    /* 子要素の基準点になります */
+  display: inline-block; /* 画像のサイズに合わせます */
+}
+
+.container img {
+  display: block;        /* 下の隙間を消すため */
+  width: 100%;           /* 必要に応じて調整 */
+}
+
+.text-overlay {
+  position: absolute;    /* 親要素を基準に自由に動かせます */
+  top: 50%;              /* 上から50%の位置 */
+  left: 50%;             /* 左から50%の位置 */
+  transform: translate(-50%, -50%); /* 自身のサイズ分戻して真ん中寄せ */
+  color: white;          /* 文字色 */
+  font-weight: bold;
+  background-color: rgba(0, 0, 0, 0.5); /* 文字を見やすくするための半透明背景 */
+  padding: 10px;
+}
