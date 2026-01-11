@@ -1,21 +1,213 @@
 /* ここから下に記載していく */
-.container {
-  position: relative;    /* 子要素の基準点になります */
-  display: inline-block; /* 画像のサイズに合わせます */
+@charset "utf-8";
+
+/* =========================================
+   共通設定
+   ========================================= */
+body {
+    font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+    font-size: 16px; /* 仕様書指定: 本文16px  */
+    color: #222222; /* 仕様書指定: 文字色#222222  */
+    line-height: 1.8;
+    background-color: #ffffff;
 }
 
-.container img {
-  display: block;        /* 下の隙間を消すため */
-  width: 100%;           /* 必要に応じて調整 */
+img {
+    max-width: 100%;
+    vertical-align: bottom;
 }
 
-.text-overlay {
-  position: absolute;    /* 親要素を基準に自由に動かせます */
-  top: 50%;              /* 上から50%の位置 */
-  left: 50%;             /* 左から50%の位置 */
-  transform: translate(-50%, -50%); /* 自身のサイズ分戻して真ん中寄せ */
-  color: white;          /* 文字色 */
-  font-weight: bold;
-  background-color: rgba(0, 0, 0, 0.5); /* 文字を見やすくするための半透明背景 */
-  padding: 10px;
+/* セクション共通の余白 */
+section {
+    padding: 60px 0; /* 仕様書に基づきゆとりを持たせる  */
+}
+
+.section-subtitle {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+h2 {
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+/* =========================================
+   ヘッダー
+   ========================================= */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    background: #fff;
+}
+
+header nav ul {
+    display: flex;
+    list-style: none;
+}
+
+header nav ul li {
+    margin-left: 30px;
+}
+
+header nav ul li a {
+    text-decoration: none;
+    color: #222222;
+}
+
+/* =========================================
+   メインビジュアル (Hero)
+   ========================================= */
+.hero {
+    position: relative;
+    height: 400px; /* 必要に応じて調整 */
+    overflow: hidden;
+    padding: 0;
+}
+
+.hero img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.hero-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #fff;
+    text-align: center;
+    text-shadow: 0 0 10px rgba(0,0,0,0.5);
+    width: 100%;
+}
+
+/* =========================================
+   ABOUT / COURSE
+   ========================================= */
+.about, .course {
+    max-width: 1100px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.course-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 60px; /* 仕様書: ボックス間の余白  */
+    background-color: #fafafa; /* 仕様書指定: グレー背景  */
+}
+
+/* 偶数番目のアイテムは左右を入れ替える */
+.course-item:nth-child(even) {
+    flex-direction: row-reverse;
+}
+
+.course-text {
+    flex: 1;
+    padding: 40px;
+    text-align: left;
+}
+
+.course-item img {
+    width: 50%;
+}
+
+/* =========================================
+   NEWS
+   ========================================= */
+.news {
+    background-color: #ffffff;
+}
+
+.news-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.news-item {
+    width: 300px; /* 仕様書指定: 画像幅300px  */
+    transition: opacity 0.3s; /* 仕様書: ホバー時のアクション  */
+}
+
+.news-item:hover {
+    opacity: 0.7;
+}
+
+.more-button {
+    display: block;
+    width: 160px;
+    margin: 40px auto 0;
+    padding: 10px;
+    background-color: #ffd61a; /* 完成形に基づく黄色  */
+    text-align: center;
+    cursor: pointer;
+}
+
+/* =========================================
+   CONTACT (フォーム)
+   ========================================= */
+.contact {
+    background-color: #fafafa;
+}
+
+form {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+dl {
+    display: flex;
+    flex-wrap: wrap;
+    border-top: 1px solid #222222; /* 仕様書指定: ボーダー  */
+}
+
+dt {
+    width: 30%;
+    padding: 20px;
+    border-bottom: 1px solid #222222;
+}
+
+dd {
+    width: 70%;
+    padding: 20px;
+    border-bottom: 1px solid #222222;
+}
+
+input[type="text"],
+input[type="email"],
+select {
+    width: 100%; /* 仕様書: パーツ幅約400px相当  */
+    max-width: 400px;
+    padding: 8px;
+}
+
+button[type="submit"] {
+    display: block;
+    width: 200px;
+    margin: 40px auto 0;
+    padding: 15px;
+    background-color: #ffd61a;
+    border: none;
+    cursor: pointer;
+}
+
+button[type="submit"]:hover {
+    opacity: 0.8;
+}
+
+/* =========================================
+   フッター
+   ========================================= */
+footer {
+    background-color: #707070; /* 仕様書指定: フッター色  */
+    color: #fff;
+    text-align: center;
+    padding: 30px 0;
 }
