@@ -1,8 +1,7 @@
 /* ここから下に記載していく */
 @charset "utf-8";
-
 /* =========================================
-   共通設定
+ 共通設定
    ========================================= */
 body {
     font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
@@ -19,7 +18,7 @@ img {
 
 /* セクション共通の余白 */
 section {
-    padding: 60px 0; /* 仕様書に基づきゆとりを持たせる  */
+    padding: 30px 0; /* 仕様書は60pxとなっているが、見た眼は30pxのほうが見やすい。 */
 }
 
 .section-subtitle {
@@ -34,90 +33,170 @@ h2 {
 }
 
 /* =========================================
-   ヘッダー
+ヘッダー
    ========================================= */
 header {
+    width: 100%; /* ヘッダー全体の幅 */
+    height: 100px; /* ヘッダー全体の高さ */
+    background-color: #fff; /* ヘッダー全体の背景色 */
+    position: fixed; /* スクロールしてもヘッダーを追従させる設定 */
+    left: 0; /* 「画面の一番上（top: 0）」かつ「一番左（left: 0）」に張り付くように指示*/
+    z-index: 100; /*ユーザーの手前に表示。層を100番目に */
+}
+
+.header-inner {
+    max-width: 1100px; /* 全体のコンテンツ幅 */
+    height: 100%;
+    margin: 0 auto;
+    padding: 0 20px; /* 端に少し余白 */
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px 40px;
-    background: #fff;
+    justify-content: space-between; /* ロゴとナビを左右に振る */
+    align-items: center; /* 上下中央 */
 }
 
-header nav ul {
-    display: flex;
-    list-style: none;
+.logo img {
+    height: 70px; /* ヘッダー全体の高さに対して、ロゴをどれくらいの大きさにするか */
+    width: auto;
 }
 
-header nav ul li {
-    margin-left: 30px;
+/* --- Navigation --- */
+.nav-list {
+    display: flex; /* リストを横並びに */
+    list-style: none;/* 箇条書きの中黒「・」を消す */
+    gap: 50px 50px; /* リスト間の余白を上下、左右50pxに設定 */
 }
 
-header nav ul li a {
-    text-decoration: none;
-    color: #222222;
+.nav-list a {
+    text-decoration: none; /*リンクに自動でつく下線を消す*/
+    color: #222; /* 仕様書の文字色指定 [cite: 31] */
+    font-size: 21px;/* 仕様書の文字の大きさ指定*/
+    font-weight: bold;/* 文字を太文字に */
+    transition: color 0.3s;/* 文字色の変化の速さ、0.3秒かけてふわっと黄色に */
 }
+
+.nav-list a:hover {
+    color: #ffd61a; /* ホバー時（マウスが上に乗っている間だけ）にテーマカラーの黄色に [cite: 74] */
+}
+
 
 /* =========================================
-   メインビジュアル (Hero)
+メインビジュアル (Hero)
    ========================================= */
 .hero {
-    position: relative;
-    height: 400px; /* 必要に応じて調整 */
-    overflow: hidden;
-    padding: 0;
-}
-
-.hero img {
+    /* 外側の背景は白（または無し）にして、中身を中央に寄せる */
     width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.hero-text {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: #fff;
-    text-align: center;
-    text-shadow: 0 0 10px rgba(0,0,0,0.5);
-    width: 100%;
-}
-
-/* =========================================
-   ABOUT / COURSE
-   ========================================= */
-.about, .course {
-    max-width: 1100px;
-    margin: 0 auto;
-    text-align: center;
-}
-
-.course-item {
     display: flex;
+    justify-content: center;
+}
+
+.hero-inner {
+    /* ヘッダーと同じ幅の設定 */
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    height: 500px; /* 画像の高さ */
+
+    /* 背景画像の設定 */
+    background-image: url("./mainbg.png");
+    background-size: cover;
+    background-position: center;
+
+    /* 文字を上下左右の中央に配置 */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    margin-bottom: 60px; /* 仕様書: ボックス間の余白  */
-    background-color: #fafafa; /* 仕様書指定: グレー背景  */
+    color: #fff;
 }
 
-/* 偶数番目のアイテムは左右を入れ替える */
-.course-item:nth-child(even) {
-    flex-direction: row-reverse;
+
+/* 文字のリセット */
+.hero-inner h1, .hero-inner p {
+    margin: 0;
 }
 
-.course-text {
-    flex: 1;
-    padding: 40px;
-    text-align: left;
+.hero h1 {
+    font-size: 35px;
+    font-weight: bold;
+    /* ② 文字の間の隙間を30pxにする設定 */
+    margin-bottom: 30px; 
 }
 
-.course-item img {
-    width: 50%;
+.hero p {
+    font-size: 25px; /* 仕様書サイズ */
+}
+
+
+/* =========================================
+ABOUT 
+   ========================================= */
+/* --- テキストエリアの調整 --- */
+.about {
+  margin-bottom: 30px; /* ★ここでABOUTとの距離を指定 */
+  text-align: center;
+}
+
+/* innerクラス（共通設定） */
+.inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px; /* スマホで見た時の左右の余白 */
+}
+
+.section-title {
+    color: #ffd61a; /* 仕様書の黄色 */
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.section-title span {
+    display: block; /* 改行させる */
+    color: #222;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+.about-text {
+    max-width: 900px; /* ★文章の横幅を少し絞ると読みやすくなります */
+    margin: 0 auto 60px; /* 中央寄せ & 下の画像との隙間 */
+    line-height: 2; /* 行間を広げて仕様書に近づける */
+}
+
+/* about-textの中にある1番目のpタグ（サブタイトル）を指定 */
+.about-text p:first-child {
+    margin-bottom: 60px; /* */
+}
+
+/* 他のpタグ（説明文）の余白も一応整えておくと綺麗です */
+.about-text p {
+    margin-top: 0;
+    margin-bottom: 20px; /* 文中の段落同士の間隔（任意） */
+}
+
+.about-text p:last-child {
+    margin-bottom: 0; /* 最後の段落の下は0にして、画像との距離を親要素で管理 */
+}
+
+/* --- 画像を横並びにする --- */
+.about-imgs {
+    display: flex; /* これだけで横並びになります */
+}
+
+.about-imgs img {
+    width: 25%; /* 100%を4等分 */
+    height: auto;
+    vertical-align: bottom; /* 画像下の隙間を消す */
 }
 
 /* =========================================
-   NEWS
+COURSE
+   ========================================= */
+
+
+
+
+/* =========================================
+  NEWS
    ========================================= */
 .news {
     background-color: #ffffff;
